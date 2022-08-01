@@ -1,0 +1,13 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "extends": ["prettier"],
+    "rules": {
+        "semi": ["warn", "always"],
+        "quotes": ["warn", "double"],
+        "camelcase": "warn",
+        "semi-spacing": "warn",
+        "newline-before-return": "warn"
+    }
+}

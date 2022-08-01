@@ -1,0 +1,25 @@
+{
+    "usersToTest": [
+        {
+            "id": "1",
+            "firstName": "Vilenio",
+            "lastName": "Kiala",
+            "username": "vilas",
+            "password": "minha"
+        },
+        {
+            "id": "2",
+            "firstName": "Vilenio",
+            "lastName": "Kiala",
+            "username": "vilacao",
+            "password": "minha"
+        },
+        {
+            "id": "3",
+            "firstName": "Vilenio",
+            "lastName": "Kiala",
+            "username": "vilas",
+            "password": "minha"
+        }
+    ]
+}
