@@ -9,14 +9,14 @@ type IUserConstructorParams = {
 };
 
 export class User implements IUser {
-    id: string;
+    idUser: string;
     firstName: string;
     lastName: string;
     username: string;
     password: string;
 
     constructor(params: IUserConstructorParams) {
-        this.id = Date.now().toString();
+        this.idUser = Date.now().toString();
         this.firstName = params.firstName;
         this.lastName = params.lastName;
         this.username = params.username;

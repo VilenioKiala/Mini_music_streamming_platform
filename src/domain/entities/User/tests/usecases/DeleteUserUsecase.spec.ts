@@ -4,37 +4,50 @@ import { DeleteUserService } from "../../services";
 import { usersToTest } from "../data/dataToTest.json";
 
 describe("Delete user usecase", () => {
-    const userRepository = {
-        saveUser: jest.fn(),
-        deleteUser: jest.fn(),
-        getAllUsers: jest.fn(),
-        getUserByUsername: jest.fn(),
-        getUserById: jest.fn(),
+    const userRepository = new InMemoryUserRepository();
+
+    const mockRepository = {
+        saveUser: jest.fn(user => userRepository.saveUser(user)),
+        deleteUser: jest.fn(user => userRepository.deleteUser(user)),
+        updateUser: jest.fn(),
+        getAllUsers: jest.fn(() => userRepository.getAllUsers()),
+        getUserByUsername: jest.fn(username =>
+            userRepository.getUserByUsername(username)
+        ),
+        getUserById: jest.fn(id => userRepository.getUserById(id)),
     };
 
-    userRepository.deleteUser.mockResolvedValueOnce(new User(usersToTest[0]));
-
     it("should delete an user", async () => {
-        const sut = new DeleteUserService(userRepository);
-
-        userRepository.getUserById.mockReturnValue({ ...usersToTest[0] });
+        const sut = new DeleteUserService(mockRepository);
 
         try {
-            const userDeleted = await sut.delete({ id: "1" });
+            const userToDelete = await mockRepository.saveUser(
+                new User(usersToTest[0])
+            );
+            await mockRepository.saveUser(new User(usersToTest[1]));
+
+            const userDeleted = await sut.delete({
+                id: userToDelete.idUser,
+            });
 
             expect({
                 ...userDeleted,
                 password: undefined,
-                id: undefined,
+                idUser: undefined,
             }).toEqual({
                 ...usersToTest[0],
                 password: undefined,
-                id: undefined,
+                idUser: undefined,
             });
         } catch (error: any) {
             throw error;
-        } finally {
-            expect(userRepository.deleteUser).toBeCalledTimes(1);
         }
+
+        const searchedUser = await mockRepository.getUserByUsername(
+            usersToTest[0].username
+        );
+
+        expect(searchedUser).toBeNull();
+        expect(mockRepository.deleteUser).toBeCalledTimes(1);
     });
 });

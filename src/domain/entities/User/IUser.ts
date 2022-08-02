@@ -1,5 +1,5 @@
 export interface IUser {
-    id: string;
+    idUser: string;
     firstName: string;
     lastName: string;
     username: string;
@@ -7,7 +7,6 @@ export interface IUser {
 }
 
 export interface IUpdateUser {
-    id?: string;
     firstName?: string;
     lastName?: string;
     username?: string;

@@ -1,4 +1,4 @@
-import { IUser } from "../../IUser";
+import { IUpdateUser, IUser } from "../../IUser";
 
 export abstract class UpdateAnExistingUserUsecase {
     abstract update(
@@ -9,12 +9,7 @@ export abstract class UpdateAnExistingUserUsecase {
 export namespace UpdateAnExistingUserUsecase {
     export type Params = {
         id: string;
-        data: {
-            firstName?: string;
-            lastName?: string;
-            username?: string;
-            password?: string;
-        };
+        data: IUpdateUser;
     };
 
     export type Result = Promise<IUser>;

@@ -1,21 +1,21 @@
 {
     "usersToTest": [
         {
-            "id": "1",
+            "idUser": "1",
             "firstName": "Vilenio",
             "lastName": "Kiala",
             "username": "vilas",
             "password": "minha"
         },
         {
-            "id": "2",
+            "idUser": "2",
             "firstName": "Vilenio",
             "lastName": "Kiala",
             "username": "vilacao",
             "password": "minha"
         },
         {
-            "id": "3",
+            "idUser": "3",
             "firstName": "Vilenio",
             "lastName": "Kiala",
             "username": "vilas",
